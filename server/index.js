@@ -5,14 +5,17 @@ const db = require('./config/db');
 
 const app = express();
 const port = process.env.PORT || 5000; // Use the PORT environment variable or default to 5000
-const authRoutes = require('./routes/auth');
 
 // Middleware
 app.use(cors());
 app.use(express.json()); // For parsing application/json
 
 // Routes
+const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes); // Mount auth routes
+
+const restaurantRoutes = require('./routes/restaurants');
+app.use('/api/restaurants', restaurantRoutes); // Mount restaurant routes
 
 // Basic GET / endpoint
 app.get('/', (req, res) => {
